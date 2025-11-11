@@ -1,3 +1,7 @@
+__version__ = "0.1.0"
+__author__ = "Carlos Rodriguez"
+__email__ = "cjrodriguezf@unav.es"
+
 from .Utilities import saveSolutions
 from .Utilities import setSolver
 from .Utilities import saveSolutionDict
@@ -12,9 +16,6 @@ from .ProblemDefinitions import buildDictionaryMCSProblem
 from .calculateMCS import calculateMCS
 
 from .cobraTools import buildGMatrix
-
-from .Validations import checkGMCS
-from .Validations import checkGMCSParallel
 
 from .OptimizationProblem import OptimizationProblem
 

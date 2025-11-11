@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cyclic-gmispy"
+version = "0.3.1"
+description = "A Python package for calculating Genetic Minimal Intervention Sets (gMIS) in metabolic networks with regulatory cycles"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Carlos Rodriguez", email = "cjrodriguezf@unav.es"}
+]
+keywords = [
+    "metabolic-networks",
+    "minimal-cut-sets",
+    "systems-biology",
+    "computational-biology",
+    "optimization",
+    "gene-regulatory-networks"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+dependencies = [
+    "cobra",
+    "numpy",
+    "scipy",
+    "pandas",
+    "tqdm",
+    "bidict",
+    "bonesis",
+    "mpbn",
+    "beartype",
+]
+
+[project.optional-dependencies]
+gurobi = ["gurobipy>=9.5.0"]
+cplex = ["cplex>=22.1.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.950",
+]
+
+[project.urls]
+Homepage = "https://github.com/PlanesLab/cyclic-gMISpy"
+Documentation = "https://github.com/PlanesLab/cyclic-gMISpy#readme"
+Repository = "https://github.com/PlanesLab/cyclic-gMISpy"
+Issues = "https://github.com/PlanesLab/cyclic-gMISpy/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cyclic-gMISpy-package"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"cyclic-gMISpy-package" = "cyclic_gmispy"
