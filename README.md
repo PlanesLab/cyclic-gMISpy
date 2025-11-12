@@ -12,9 +12,7 @@ cyclic-gMISpy is a computational tool designed for identifying minimal genetic i
 - **Genetic Minimal Intervention Sets (gMIS)**: Identify minimal gene knockouts considering GPR rules
 - **Regulatory Cycles Support**: Handle cyclic dependencies in gene regulatory networks
 - **Parallel Computing**: Multi-threaded calculations for improved performance
-- **Multiple Solvers**: Support for Gurobi, CPLEX, and SCIP optimization solvers
-- **Validation Tools**: Built-in validation and verification of computed solutions
-- **Flexible Input/Output**: Support for COBRApy models and various data formats
+- **Multiple Solvers**: Support for Gurobi and CPLEX optimization solvers
 
 ## Installation
 
