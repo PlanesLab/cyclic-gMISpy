@@ -49,6 +49,13 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+Or use pip install via piptest
+```bash
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ cyclic-gmispy
+```
+
+
+
 ## Quick Start
 
 ### Basic MCS Calculation
