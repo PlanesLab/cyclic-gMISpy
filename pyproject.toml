@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cyclic_gmispy_blocked"
+name = "cyclic-gmispy-blocked"
 version = "0.3.3.1"
 description = "A Python package for calculating Genetic Minimal Intervention Sets (gMIS) in metabolic networks with regulatory cycles"
 readme = "README.md"
