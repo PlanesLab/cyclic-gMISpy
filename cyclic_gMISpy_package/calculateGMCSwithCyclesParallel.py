@@ -529,7 +529,7 @@ def calculateRegNetGMatrix(model, regulatory_dict, num_layers=2, **kwargs):
     targert_path = Path(path, 'bnAnalysis/completed_bnnets')
     cycles_in_enumGPRDict = {}
     for gpr, value in enumGPRDict.items():
-        bnet_file = targert_path / f"{gpr}-{maxKOLength}.bnet"
+        bnet_file = targert_path / f"{gpr}-{num_layers}.bnet"
         nodes = find_complex_cycles(bnet_file.read_text())
         if nodes:
             cycles_in_enumGPRDict[gpr] = nodes

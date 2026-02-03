@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cyclic-gmispy-blocked"
-version = "0.3.3.1"
+version = "0.3.3.2"
 description = "A Python package for calculating Genetic Minimal Intervention Sets (gMIS) in metabolic networks with regulatory cycles"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -64,7 +64,7 @@ Repository = "https://github.com/PlanesLab/cyclic-gMISpy"
 Issues = "https://github.com/PlanesLab/cyclic-gMISpy/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["cyclic-gMISpy-package"]
+packages = ["cyclic_gMISpy_package"]
 
 [tool.hatch.build.targets.wheel.force-include]
-"cyclic-gMISpy-package" = "cyclic_gmispy"
+"cyclic_gMISpy_package" = "cyclic_gmispy_blocked"
