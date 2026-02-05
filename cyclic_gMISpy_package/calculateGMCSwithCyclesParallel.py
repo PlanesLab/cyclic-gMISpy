@@ -479,19 +479,11 @@ def find_complex_cycles(data_string):
                     G.add_edge(source, target)
 
     # --- Detection ---
-    # nx.simple_cycles finds all elementary cycles
-    # Since we didn't add self-loops to G, all found cycles will have length >= 2
-    cycles = list(nx.simple_cycles(G))
+    nodes_in_cycles = set()
     
-    # --- Output ---
-    if not cycles:
-        return list(nodes_in_cycles)  # No cycles found
-    else:
-        #print(f"Found {len(cycles)} complex cycle(s):")
-        for i, cycle in enumerate(cycles, 1):
-            # Format the output to look like a flow: A -> B -> C -> A
-            cycle_path = " -> ".join(cycle) + " -> " + cycle[0]
-            nodes_in_cycles.update(cycle)
+    # Process cycles iteratively but store them
+    for cycle in nx.simple_cycles(G):
+        nodes_in_cycles.update(cycle)  # Track nodes
     
     return list(nodes_in_cycles)
 
