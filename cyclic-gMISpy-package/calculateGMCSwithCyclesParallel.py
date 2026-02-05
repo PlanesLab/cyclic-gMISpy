@@ -139,8 +139,6 @@ def calculateParallelGMIS(cobraModel, regulatory_dataframe, num_layers=2, **kwar
 
     # Prepare the regulatory network
     regulatory_dict = regulatory_dataframe.to_dict('list')
-    # Check if the regulatory network has valid sources and targets
-    regulatory_dict, referenceDict = checkRegulatoryNetwork(regulatory_dict)
     # Check if the regulatory network has the correct format, should have source_ENSEMBL, target_ENSEMBL, and interaction
     expectedColumns = ['source_ENSEMBL', 'target_ENSEMBL', 'interaction']
     for column in expectedColumns:
@@ -152,9 +150,10 @@ def calculateParallelGMIS(cobraModel, regulatory_dataframe, num_layers=2, **kwar
         # Drop the rows that are not genes
         regulatory_dataframe = regulatory_dataframe[regulatory_dataframe['source_ENSEMBL'].str.contains('ENSG')]
         regulatory_dataframe = regulatory_dataframe[regulatory_dataframe['target_ENSEMBL'].str.contains('ENSG')]
-    
-    #print(regulatory_dataframe.shape)    
-    
+        regulatory_dict = regulatory_dataframe.to_dict('list')
+
+    # Check if the regulatory network has valid sources and targets
+    regulatory_dict, referenceDict = checkRegulatoryNetwork(regulatory_dict)   
 
     startTime = time.time()
     gObject = calculateRegNetGMatrix(cobraModel, regulatory_dict, num_layers, solver=solver, maxKOLength=maxKOLength, path=path, onlyGenes=onlyGenes, numWorkers=numWorkers)
