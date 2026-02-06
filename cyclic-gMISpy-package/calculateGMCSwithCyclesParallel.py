@@ -684,6 +684,9 @@ def calculate_gMIS(bnet):
 def calculate_gMIS_iterative(gDict, model, regulatory_dict, path, gpr, gprDict, reactions, num_layers, numWorkers, maxKOLength, solver):
     flag = True
     while flag:
+        if num_layers <= 0:
+            print("No solution by reducing the number of layers.")
+            return [{'gpr': None}]
         num_layers -= 1
         parallelGPRDict = preProcessing(model=model,
                                 regulatory_network=regulatory_dict,
@@ -784,19 +787,20 @@ def constructLayerWithCycles(genes, regulatory_dict):
 def stackLayersWithCycles(genes, regulatory_dict, num_layers):
     if num_layers == 0:
         return {'sources': [], 'targets': [], 'interaction': [], 'genes': []}
+    layer = None
     for i in range(num_layers):
         layer = constructLayerWithCycles(genes, regulatory_dict)
         if layer:
             genes = layer['genes']
-            safeLayer = layer.copy()
         else:
             break
-    if not layer:
-        if i == 0:
-            safeLayer = {'sources': [], 'targets': [], 'interaction': [], 'genes': []}
-        return safeLayer
-    else:
-        layer['layer_hasCycles'] = [i + 1, False]
+    
+    # Handle case where no valid layer was constructed
+    if layer is None:
+        return {'sources': [], 'targets': [], 'interaction': [], 'genes': []}
+
+    layer['layer_hasCycles'] = [i + 1, False]
+
     return layer
 
 
