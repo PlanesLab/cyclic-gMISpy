@@ -44,6 +44,7 @@ dependencies = [
     "beartype",
     "gurobipy",
     "networkx",
+    "pyvis"
 ]
 
 [project.optional-dependencies]
