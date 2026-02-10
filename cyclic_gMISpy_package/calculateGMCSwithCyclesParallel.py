@@ -460,23 +460,38 @@ def find_complex_cycles(data_string):
     nodes_in_cycles = set()
     G = nx.DiGraph()
     
-    # --- Parsing ---
     lines = data_string.strip().split('\n')
     for line in lines:
-        if not line.strip(): continue
+        line = line.strip()
+        if not line:
+            continue
         
-        parts = line.split(',')
-        target = parts[0].strip()
-        
-        if len(parts) > 1:
-            # The right side contains the regulators (Sources)
-            regulators = parts[1].strip().split('|')
+        # Split on FIRST comma only
+        parts = line.split(',', 1)
+        if len(parts) < 2:
+            continue
             
-            for source in regulators:
-                source = source.strip()
-                # --- CRITICAL STEP: Ignore Self-Loops ---
-                if source and source != target:
-                    G.add_edge(source, target)
+        target = parts[0].strip()
+        function = parts[1].strip()
+        
+        # Store boolean function
+        G.add_node(target, function=function)
+        
+        # Extract gene IDs using regex
+        regulators = re.findall(r'ENSG\d+|gpr', function)
+        
+        # Remove duplicates
+        seen = set()
+        for reg in regulators:
+            if reg not in seen:
+                seen.add(reg)
+                
+                # Check if inhibitor
+                is_inhibitor = bool(re.search(rf'!{reg}', function))
+                
+                # Add edge with relationship type
+                G.add_edge(reg, target, 
+                          relationship='inhibitor' if is_inhibitor else 'activator')
 
     # --- Detection ---
     nodes_in_cycles = set()
