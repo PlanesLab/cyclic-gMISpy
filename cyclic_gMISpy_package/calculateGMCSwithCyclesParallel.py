@@ -166,7 +166,8 @@ def calculateParallelGMIS(cobraModel, regulatory_dataframe, num_layers=2, **kwar
     relationships = gObject["relationships"]
     numberNewGenesByKO = gObject["numberNewGenesByKO"]
     
-    
+    return None
+
     # Filter the G matrix to keep only genes that are in the geneSubset
     if geneSubset:
         #Make a set of the geneSubset
