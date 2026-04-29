@@ -62,7 +62,7 @@ pip install cyclic-gmispy
 
 ```python
 import cobra
-from cyclic_gmis import calculateMCS
+from cyclic_gmispy import calculateParallelGMIS
 
 # Load your metabolic model
 model = cobra.io.read_sbml_model("your_model.xml")
@@ -74,7 +74,7 @@ model = cobra.io.read_sbml_model("your_model.xml")
 
 ```python
 import pandas as pd
-from cyclic_gmis import calculateGMIS
+from cyclic_gmispy import calculateGMIS
 
 # Load metabolic model
 model = cobra.io.read_sbml_model("your_model.xml")
@@ -82,7 +82,7 @@ model = cobra.io.read_sbml_model("your_model.xml")
 # Load regulatory network data
 regulatory_df = pd.read_csv("regulatory_network.csv")
 
-from cyclic_gmis import calculateParallelGMIS
+from cyclic_gmispy import calculateParallelGMIS
 
 # Run parallel gMIS calculation
 parallel_results = calculateParallelGMIS(
