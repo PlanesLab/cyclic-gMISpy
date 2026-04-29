@@ -43,6 +43,7 @@ dependencies = [
     "mpbn",
     "beartype",
     "gurobipy",
+    "pyvis"
 ]
 
 [project.optional-dependencies]
